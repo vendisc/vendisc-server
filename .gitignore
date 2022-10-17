@@ -1,0 +1,6 @@
+/test
+/node_modules
+/public
+/src/config/db.json
+/src/config/jwt.json
+/src/config/mail.json
