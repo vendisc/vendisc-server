@@ -106,8 +106,6 @@
   | authorization | string | true     | user identity token                    |
   | lid           | int    | false    | the id of the file location identifier |
 
-  *tips: Empty lid means query root directory for files*
-
 - response:
 
   ```JSON
@@ -127,6 +125,40 @@
   }
   ```
   
+
+
+
+### 1.4、get list
+
+- method: **GET**
+
+- url: `/api/list`
+
+- head: 
+
+  | property name | type   | required | description                            |
+  | ------------- | ------ | -------- | -------------------------------------- |
+  | authorization | string | true     | user identity token                    |
+  | lid           | int    | false    | the id of the file location identifier |
+
+- response:
+
+  ```JSON
+  {
+  	"code": 1,
+  	"msg": "get list success",
+  	"data": [
+  		{
+  			"id": "f1",
+  			"fname": "xxx.jpeg",
+  			"date": "2022-10-01 08:00",
+  			"type": "image",
+  			"size": 1024,
+  			"url": "/files/xxxx-xxxx-xxxx.jpe"
+  		}
+  	]
+  }
+  ```
 
 
 
@@ -322,8 +354,6 @@
   | ------------- | ------ | -------- | -------------------------------------- |
   | authorization | string | true     | user identity token                    |
   | lid           | int    | false    | the id of the file location identifier |
-
-  *tips: Empty lid means query root directory for folders*
 
 - response:
 

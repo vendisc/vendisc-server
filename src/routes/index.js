@@ -3,6 +3,7 @@ const fileCtrl = require('../controller/fileCtrl');
 const folderCtrl = require('../controller/folderCtrl');
 const userCtrl = require('../controller/userCtrl');
 const tokenCtrl = require('../controller/tokenCtrl');
+const listCtrl = require('../controller/listCtrl');
 
 const FILE_BASE_URL = '/api/file';
 const FOLDER_BASE_URL = '/api/folder';
@@ -14,6 +15,9 @@ router.get('/', async ctx => {
     ctx.status = 301;
     ctx.redirect('/views');
 })
+
+// 获取当前位置的文件夹和文件
+router.get('/api/list', tokenCtrl.jwtVerify, listCtrl.getCurList);
 
 // 获取文件列表
 router.get(`${FILE_BASE_URL}/list`, tokenCtrl.jwtVerify, fileCtrl.getFileList);
