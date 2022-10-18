@@ -12,13 +12,15 @@ const insertFolder = async (uid, fdname, lid = null) => {
     }
 
     // 不存在则创建
-    const [, created] = await Folder.findOrCreate({
+    const [folder, created] = await Folder.findOrCreate({
         where: { uid, lid, fdname }
     });
 
     if (!created) {
         throw new ReqError(ERROR.FOLDER_EXIST, 'Folder exist');
     }
+
+    return folder.fdid
 };
 
 const updateFolder = async (fdid, fdname) => {
@@ -35,8 +37,8 @@ const updateFolder = async (fdid, fdname) => {
     })
 };
 
-const selectFolder = async (uid, lid) => {
-    const res = await Folder.findAll({ where: { uid, lid } });
+const selectFolder = async (lid) => {
+    const res = await Folder.findAll({ where: { lid } });
 
     return res
 };

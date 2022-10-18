@@ -1,12 +1,15 @@
 const userService = require('../service/userService');
 const tokenService = require('../service/tokenService');
+const folderService = require('../service/folderService');
 const res = require('../utils/response');
 
 exports.userRegister = async ctx => {
     const {username, password, password2, uname, email} = ctx.request.body;
     const user = {username, password, password2, uname, email};
 
-    await userService.insertUser(user);
+    const uid = await userService.insertUser(user);
+    const fdid = await folderService.insertFolder(uid, 'root');
+    await userService.updateRootId(uid, fdid)
 
     ctx.body = res.success('register success');
 }

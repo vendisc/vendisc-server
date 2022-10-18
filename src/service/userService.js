@@ -28,6 +28,8 @@ const insertUser = async (user) => {
     user.password = sha256(user.password); // 加密密码
     const userInstance = await User.create(user);
     await userInstance.save();
+
+    return userInstance.uid;
 };
 
 const checkLogin = async (username, password) => {
@@ -113,6 +115,14 @@ const sendTemporaryPassword = async (email) => {
     return res.uid;
 };
 
+const updateRootId = async (uid, fdid) => {
+    await User.update({ root_id: fdid }, {
+        where: {
+            uid
+        }
+    })
+}
+
 module.exports = {
-    insertUser, checkLogin, updateUname, updatePassword, updateEmail, sendTemporaryPassword
+    insertUser, checkLogin, updateUname, updatePassword, updateEmail, sendTemporaryPassword, updateRootId
 }

@@ -31,10 +31,9 @@ exports.renameFile = async ctx => {
 }
 
 exports.getFileList = async ctx => {
-    const uid = ctx.state.user.uid;
     const lid = ctx.headers.lid || null;
 
-    const fileList = await fileService.getFileList(uid, lid);
+    const fileList = await fileService.getFileList(lid);
 
     ctx.body = res.success('get files success', fileList);
 }

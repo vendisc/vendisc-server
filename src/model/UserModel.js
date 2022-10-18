@@ -18,7 +18,8 @@ const User = sequelize.define('user', {
         type: Sequelize.INTEGER,
         defaultValue: 100 * 1024 * 1024  // 100mb
     },
-    email: Sequelize.STRING(50)
+    email: Sequelize.STRING(50),
+    root_id: Sequelize.INTEGER
 }, {
     tableName: 't_user',
     timestamps:false

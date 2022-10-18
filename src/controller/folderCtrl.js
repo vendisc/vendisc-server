@@ -20,10 +20,9 @@ exports.renameFolder = async ctx => {
 }
 
 exports.getFolderList = async ctx => {
-    const uid = ctx.state.user.uid;
     const lid = ctx.headers.lid || null;
 
-    const folderList = await folderService.selectFolder(uid, lid);
+    const folderList = await folderService.selectFolder(lid);
 
     ctx.body = res.success('get folders success', folderList);
 }

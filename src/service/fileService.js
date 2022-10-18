@@ -7,15 +7,13 @@ const { getFileType } = require('../utils/fileUtil');
 
 /**
  * 获取当前位置的文件列表
- * @param {*} uid 用户标识
- * @param {*} pos 所处位置,null则为根目录
+ * @param {*} lid 所处位置
  * @returns 
  */
-const getFileList = async (uid, lid) => {
+const getFileList = async (lid) => {
     const fileList = await File.findAll({
         attributes: ['fid', 'fname', 'url', 'uri', 'size', 'timestamp', 'type'],
         where: {
-            uid,
             lid: lid || null
         }
     })
