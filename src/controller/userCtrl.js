@@ -73,3 +73,7 @@ exports.userLogout = async ctx => {
 
     ctx.body = res.success('logout success');
 }
+
+exports.getUserInfo = async ctx => {
+    ctx.body = res.success('get user info success', ctx.state.user);
+}

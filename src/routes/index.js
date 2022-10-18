@@ -57,6 +57,7 @@ router.post(`${USER_BASE_URL}/register`, userCtrl.userRegister);
 router.post(`${USER_BASE_URL}/login`, userCtrl.userLogin);
 // 用户修改密码
 router.post(`${USER_BASE_URL}/password`, tokenCtrl.jwtVerify, userCtrl.editPassword);
-
+// 获取用户信息
+router.get(`${USER_BASE_URL}/info`, tokenCtrl.jwtVerify, userCtrl.getUserInfo);
 
 module.exports = router;

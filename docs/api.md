@@ -128,7 +128,7 @@
 
 
 
-### 1.4、get list
+### 1.5、get list
 
 - method: **GET**
 
@@ -162,7 +162,7 @@
 
 
 
-### 1.5、get used capacity
+### 1.6、get used capacity
 
 - method: **GET**
 
@@ -189,7 +189,7 @@
 
 
 
-### 1.6、move file
+### 1.7、move file
 
 - method: **POST**
 
@@ -219,7 +219,7 @@
 
 
 
-### 1.7、download file
+### 1.8、download file
 
 - method: **GET**
 
@@ -558,6 +558,40 @@
   	"msg": "logout success"
   }
   ```
+
+
+
+### 3.8、get user info
+
+- method: **GET**
+
+- url: `/api/user/info`
+
+- head: 
+
+  | property name | type   | required | description         |
+  | ------------- | ------ | -------- | ------------------- |
+  | authorization | string | true     | user identity token |
+
+- response:
+
+  ```JSON
+  {
+      "code": 1,
+      "msg": "get user info success",
+      "data": {
+          "uid": 1,
+          "uname": "bulv",
+          "username": "bulv0620",
+          "timestamp": "2022-10-18 18:54:00",
+          "capacity": 104857600,
+          "email": "bulv0620@163.com",
+          "root_id": 1
+      }
+  }
+  ```
+
+
 
 
 

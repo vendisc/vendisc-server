@@ -42,6 +42,7 @@ const checkLogin = async (username, password) => {
     }
 
     const user = await User.findOne({
+        attributes: { exclude: ['password'] },
         where: {
             username, password: sha256(password)
         }
