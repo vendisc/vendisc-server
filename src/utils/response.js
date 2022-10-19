@@ -12,9 +12,9 @@ exports.success = (msg = 'success', data) => {
     return res;
 }
 
-exports.error = (msg = 'error', data) => {
+exports.error = (msg = 'error', data, code=CODE.ERROR_CODE) => {
     const res = {
-        code: CODE.ERROR_CODE,
+        code,
         msg
     }
     if(!isEmpty(data)) {

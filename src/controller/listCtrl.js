@@ -10,6 +10,7 @@ exports.getCurList = async ctx => {
 
     const fileList = fileListOrigin.map(item => ({
         id: 'f_' + item.dataValues.fid,
+        fid: item.dataValues.fid,
         name: item.dataValues.fname,
         url: item.dataValues.url,
         uri: item.dataValues.uri,
@@ -20,6 +21,7 @@ exports.getCurList = async ctx => {
 
     const folderList = folderListOrigin.map(item => ({
         id: 'fd_' + item.dataValues.fdid,
+        fdid: item.dataValues.fdid,
         name: item.dataValues.fdname,
         url: null,
         uri: null,

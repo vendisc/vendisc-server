@@ -8,7 +8,7 @@ exports.userRegister = async ctx => {
     const user = {username, password, password2, uname, email};
 
     const uid = await userService.insertUser(user);
-    const fdid = await folderService.insertFolder(uid, 'root');
+    const fdid = await folderService.insertFolder(uid, 'Home');
     await userService.updateRootId(uid, fdid)
 
     ctx.body = res.success('register success');
@@ -41,7 +41,7 @@ exports.editPassword = async ctx => {
 
     await userService.updatePassword(newPwd, oldPwd, uid);
     // 清空登记的token
-    await tokenService.removeToken(uid);
+    // await tokenService.removeToken(uid);
 
     ctx.body = res.success('edit password success');
 }

@@ -26,7 +26,7 @@ const folderValidator = (fdid, fdname) => {
 
     fdid = !isEmpty(fdid) ? fdid : '';
 
-    if(Validator.isEmpty(fdid)) {
+    if(Validator.isEmpty(fdid.toString())) {
         errors.fdid = 'Folder id can not be empty';
     }
 

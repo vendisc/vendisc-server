@@ -20,8 +20,8 @@ app.use(async (ctx, next) => {
         /* jwt verify */
         await next();
     } catch (error) {
-        console.log(error);
-        ctx.body = error instanceof ReqError ? response.error(error.message, error.errors) : response.error(`Unexpected error, code: ${ERROR.UNEXPECTED_ERROR}`);
+        console.log(error)
+        ctx.body = error instanceof ReqError ? response.error(error.message, error.errors, error.code) : response.error(`Unexpected error`);
     }
 })
 
