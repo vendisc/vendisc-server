@@ -19,16 +19,17 @@ const verify = async (token, ip) => {
     const userInfo = jwt.jwtVerify(token);
 
     if(!userInfo) {
-        throw new ReqError(ERROR.PERMISSION_DENIED, 'Permission denied');
+        throw new ReqError(ERROR.PERMISSION_DENIED, 'Permission denied1');
     }
 
+    console.log(ip)
     const res = await Token.findOne({where: {
         uid: userInfo.uid,
         ip
     }})
 
     if(!res || res.token !== token) {
-        throw new ReqError(ERROR.PERMISSION_DENIED, 'Permission denied');
+        throw new ReqError(ERROR.PERMISSION_DENIED, 'Permission denied2');
     }
 
     return userInfo;

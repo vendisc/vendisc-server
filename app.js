@@ -15,7 +15,7 @@ const app = new Koa();
 app.use(async (ctx, next) => {
     try {
         ctx.set('Access-Control-Allow-Origin', '*');
-        ctx.set('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
+        ctx.set('Access-Control-Allow-Headers', 'lid, Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
         ctx.set('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
         /* jwt verify */
         await next();
@@ -30,7 +30,7 @@ app.use(koaBody({
     formidable: {
         uploadDir: path.join(__dirname, 'public/files'),
         keepExtensions: true,
-        maxFieldsSize: 50 * 1024 * 1024
+        maxFileSize: 5 * 1024 * 1024 * 1024
     }
 }))
 
