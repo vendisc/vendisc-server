@@ -42,10 +42,10 @@ const getUsedCapacity = async (uid) => {
  * @param {*} file 文件信息
  */
 const saveFile = async (file, capacity) => {
-    const { fname, size, uid, uri } = file;
+    const { fname, size, uid, uri, lid } = file;
 
     // 判断文件是否已存在
-    const res = await File.findOne({ where: { fname } });
+    const res = await File.findOne({ where: { fname, uid, lid } });
     if (res) {
         // 删除文件
         await unlinkFile(uri);
