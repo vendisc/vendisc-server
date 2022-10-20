@@ -1,18 +1,21 @@
 const fileService = require('../service/fileService');
 const folderService = require('../service/folderService');
 const res = require('../utils/response');
+const {getIp} = require('../utils/ip')
 
 exports.getCurList = async ctx => {
     const lid = ctx.header.lid;
 
     const fileListOrigin = await fileService.getFileList(lid);
     const folderListOrigin = await folderService.selectFolder(lid);
+    const ip = await getIp();
+    const port = '3000'
 
     const fileList = fileListOrigin.map(item => ({
         id: 'f_' + item.dataValues.fid,
         fid: item.dataValues.fid,
         name: item.dataValues.fname,
-        url: item.dataValues.url,
+        url: `http://${ip}:${port}${item.dataValues.url}`,
         uri: item.dataValues.uri,
         size: item.dataValues.size,
         timestamp: item.dataValues.timestamp,
