@@ -16,7 +16,7 @@ const User = sequelize.define('user', {
     },
     capacity: {
         type: Sequelize.BIGINT,
-        defaultValue: 100 * 1024 * 1024  // 100mb
+        defaultValue: 1024 * 1024 * 1024  // 1 GB
     },
     email: Sequelize.STRING(50),
     root_id: Sequelize.INTEGER
