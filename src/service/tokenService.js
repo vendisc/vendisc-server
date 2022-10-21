@@ -15,20 +15,44 @@ const insertToken = async (token, uid, ip) => {
     }
 }
 
-const verify = async (token, ip) => {
+const verify = async (token) => {
     const userInfo = jwt.jwtVerify(token);
 
-    if(!userInfo) {
+    if (!userInfo) {
         throw new ReqError(ERROR.PERMISSION_DENIED, 'Permission denied1');
     }
 
-    console.log(ip)
-    const res = await Token.findOne({where: {
-        uid: userInfo.uid,
-        ip
-    }})
+    const res = await Token.findAll({
+        where: {
+            uid: userInfo.uid
+        }
+    })
 
-    if(!res || res.token !== token) {
+    for(let i = res.length - 1; i >=0; i++) {
+        const resToken = res[i].dataValues.token;
+        if(resToken === token) {
+            return userInfo
+        }
+    }
+
+    throw new ReqError(ERROR.PERMISSION_DENIED, 'Permission denied2');
+}
+
+const verifyWithIp = async (token, ip) => {
+    const userInfo = jwt.jwtVerify(token);
+
+    if (!userInfo) {
+        throw new ReqError(ERROR.PERMISSION_DENIED, 'Permission denied1');
+    }
+
+    const res = await Token.findOne({
+        where: {
+            uid: userInfo.uid,
+            ip
+        }
+    })
+
+    if (!res || res.token !== token) {
         throw new ReqError(ERROR.PERMISSION_DENIED, 'Permission denied2');
     }
 
@@ -37,12 +61,13 @@ const verify = async (token, ip) => {
 
 const removeToken = async (uid, ip) => {
     await Token.destroy({
-        where: ip ? {uid, ip} : {uid}
+        where: ip ? { uid, ip } : { uid }
     })
 }
 
 module.exports = {
     insertToken,
     verify,
-    removeToken
+    removeToken,
+    verifyWithIp
 }
