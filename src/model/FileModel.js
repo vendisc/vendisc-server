@@ -10,7 +10,7 @@ const File = sequelize.define('file', {
     fname: Sequelize.STRING(50),
     url: Sequelize.STRING(255),
     uri: Sequelize.STRING(255),
-    size: Sequelize.INTEGER,
+    size: Sequelize.BIGINT,
     uid: Sequelize.INTEGER,
     timestamp: {
         type:Sequelize.DATE,
