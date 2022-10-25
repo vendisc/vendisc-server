@@ -28,13 +28,13 @@ const verify = async (token) => {
         }
     })
 
-    for(let i = res.length - 1; i >=0; i++) {
+    for (let i = res.length - 1; i >= 0; i--) {
         const resToken = res[i].dataValues.token;
-        if(resToken === token) {
+        if (resToken === token) {
             return userInfo
         }
     }
-
+    
     throw new ReqError(ERROR.PERMISSION_DENIED, 'Permission denied2');
 }
 
@@ -59,7 +59,13 @@ const verifyWithIp = async (token, ip) => {
     return userInfo;
 }
 
-const removeToken = async (uid, ip) => {
+const removeToken = async (token) => {
+    await Token.destroy({
+        where: {token}
+    })
+}
+
+const removeTokenByUidAndIp = async (uid, ip) => {
     await Token.destroy({
         where: ip ? { uid, ip } : { uid }
     })
@@ -69,5 +75,6 @@ module.exports = {
     insertToken,
     verify,
     removeToken,
-    verifyWithIp
+    verifyWithIp,
+    removeTokenByUidAndIp
 }

@@ -66,10 +66,9 @@ exports.retrievePassword = async ctx => {
 }
 
 exports.userLogout = async ctx => {
-    const uid = ctx.state.user.uid;
-    const ip = ctx.request.ip;
+    const { authorization } = ctx.request.header;
 
-    await tokenService.removeToken(uid, ip)
+    await tokenService.removeToken(authorization)
 
     ctx.body = res.success('logout success');
 }

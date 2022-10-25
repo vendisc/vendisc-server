@@ -13,7 +13,7 @@ const Token = sequelize.define('token', {
         type: Sequelize.DATE,
         defaultValue: Sequelize.NOW
     },
-    ip: Sequelize.STRING(20)
+    ip: Sequelize.STRING(50)
 }, {
     tableName: 't_token',
     timestamps:false
